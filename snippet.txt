@@ -1,4 +1,12 @@
-<model-viewer src="tibau2.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1.5" shadow-softness="0.8" camera-orbit="-44.86deg 60.17deg 59.88m" field-of-view="25.98deg">
+<model-viewer src="tibau2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" camera-target="0m 4m -6m" camera-orbit="-46.76deg 74.24deg 68.55m" field-of-view="30deg" autoplay>
+    <button class="Hotspot" slot="hotspot-1" data-surface="14 0 7102 14506 14711 0.637 0.075 0.288" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Iron Wood
+            (Kayu Berlian)</div>
+    </button><button class="Hotspot" slot="hotspot-2" data-surface="17 0 71 79 70 0.723 0.223 0.054" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Iron Wood Steps</div>
+    </button><button class="Hotspot" slot="hotspot-3" data-surface="19 0 2973 2871 2869 0.815 0.028 0.156" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Rattan Rope</div>
+    </button>
     <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
     </div>
