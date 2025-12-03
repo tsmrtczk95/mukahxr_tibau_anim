@@ -1,0 +1,30 @@
+{
+  "title": "🎯 Tibau (Pisa’ Tibow) – Melanau Traditional Swing",
+  "description": "Test your knowledge about this thrilling Melanau cultural game played during the Harvest Festival.",
+  "questions": [
+    {
+      "id": 1,
+      "text": "During which annual event is Tibau traditionally played?",
+      "options": [
+        "Gawai Dayak",
+        "Sarawak Rainforest World Music Festival",
+        "Melanau Harvest Festival ✅",
+        "Borneo Cultural Festival"
+      ],
+      "correctIndex": 2,
+      "explanation": "Tibau is played during the Melanau Harvest Festival, a unique celebration featured in the Sarawak Earth Kenyalang tourism calendar."
+    },
+    {
+      "id": 2,
+      "text": "Why is Tibau considered an attraction for brave Melanau youths?",
+      "options": [
+        "It involves singing traditional chants at high volume",
+        "It requires players to carve the swing from ironwood",
+        "It includes many daring stunts during the swing ✅",
+        "It is only played at midnight on sacred ground"
+      ],
+      "correctIndex": 2,
+      "explanation": "The game features numerous stunts, making it both thrilling and symbolic of courage and unity among youths."
+    }
+  ]
+}
