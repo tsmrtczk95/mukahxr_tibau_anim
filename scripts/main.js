@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Sidebar toggle (mobile)
   const toggle = document.getElementById('toggleSidebar');
   const sidebar = document.getElementById('uiSidebar');
+
+  toggle?.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    // Lock body scroll when sidebar open (mobile)
+    document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    });
   
   if (toggle) {
     toggle.addEventListener('click', () => {
