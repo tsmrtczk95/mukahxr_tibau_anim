@@ -31,10 +31,11 @@
     </div>
 <!-- MODEL VIEWER. -->
     <main id="viewerHost" class="viewer-host">
-      <model-viewer src="/assets/tibau.glb" 
+      <model-viewer id="modelView"
+        src="/assets/tibau.glb" 
         ar ar-modes="webxr scene-viewer quick-look"
         camera-controls tone-mapping="neutral"
-        poster="poster.webp"
+        poster="./assets/images/poster.webp"
         shadow-intensity="1"
         camera-target="0m 4m -6m"
         camera-orbit="-46.76deg 74.24deg 68.55m"
@@ -57,7 +58,7 @@
         </div>
       
         <button slot="ar-button" id="ar-button">View in your space</button>
-        <div id="ar-prompt"><img src="ar_hand_prompt.png"></div>
+        <div id="ar-prompt"><img src="./assets/images/ar_hand_prompt.png" alt="AR Prompt"></div>
       </model-viewer>
     </main>
 
@@ -69,10 +70,9 @@
       </div>
       <div id="contentBody" class="content-body"></div>
     </div>
-    
-    <script src="./script.js"></script>
-    <script src="./components/ui.js"></script>
-    <!-- Loads <model-viewer> for browsers: -->
+<!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <script type="module" src="./components/ui.js"></script>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
