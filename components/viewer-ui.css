@@ -1,1 +1,99 @@
+/* Top Navigation */
+.topbar {
+  width: 100%;
+  height: 56px;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
 
+.topbar .logo {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.desktop-nav button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: #222;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+/* Content Sliding Panel */
+.content-panel {
+  position: fixed;
+  bottom: -80%;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: white;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  transition: bottom 0.35s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.content-panel.open {
+  bottom: 0;
+}
+
+#contentHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #eee;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+#contentBody {
+  padding: 14px;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .desktop-nav { display: none; }
+  .mobile-menu-btn { display: block; }
+
+  .mobile-drawer {
+    background:#222;
+    position: fixed;
+    top:56px; left:0;
+    width:100%;
+    padding:10px;
+    display:none;
+    flex-direction:column;
+    gap:10px;
+    z-index:9999;
+  }
+
+  .mobile-drawer button {
+    background:#333;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+  }
+}
