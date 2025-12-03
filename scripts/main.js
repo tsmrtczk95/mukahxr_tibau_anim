@@ -24,3 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.getElementById('forceArBtn')?.addEventListener('click', () => {
+  const modelViewer = document.querySelector('model-viewer');
+  modelViewer.activateAR();
+});
