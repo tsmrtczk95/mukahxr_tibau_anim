@@ -7,71 +7,124 @@ function openPanel(title, contentHTML) {
   panelTitle.textContent = title;
   panelBody.innerHTML = contentHTML;
   panel.classList.add("open");
+  panel.setAttribute("aria-hidden","false");
 }
 
-closePanel.addEventListener("click", () => {
+function closePanelFn() {
   panel.classList.remove("open");
-});
-
-/* -------------------------
-   Content Loader Functions
--------------------------- */
-
-// Load local audio
-export function loadAudio() {
-  openPanel("Audio", `
-    <audio controls style="width: 100%;">
-      <source src="./assets/audio/audio1.mp3" type="audio/mpeg">
-    </audio>
-  `);
+  panel.setAttribute("aria-hidden","true");
 }
 
-// Load local video
-export function loadVideo() {
-  openPanel("Video", `
-    <video controls style="width:100%;max-height:55vh;">
-      <source src="./assets/video/video1.mp4" type="video/mp4">
-    </video>
-  `);
+closePanel.addEventListener("click", closePanelFn);
+
+/* Content functions exported for import in script.js */
+export async function loadAudioList(list) {
+  // list: array of {label,src}
+  const html = [];
+  html.push('<h3>Audio</h3>');
+  if(!list || list.length===0){
+    html.push('<p>No audio files found. Place files in /assets/audio and pass a list.</p>');
+  } else {
+    list.forEach(a => {
+      html.push(`<div class="audio-item" style="margin-bottom:12px;">
+        <div style="font-weight:600;">${a.label}</div>
+        <audio controls style="width:100%;"><source src="${a.src}"></audio>
+      </div>`);
+    });
+  }
+  openPanel('Audio', html.join(''));
 }
 
-// Load text article
-export async function loadArticleText() {
-  const text = await fetch("./assets/articles/article1.txt").then(r => r.text());
-  openPanel("Article", `<pre style="white-space:pre-wrap">${text}</pre>`);
+export function loadVideoList(list) {
+  const html = [];
+  html.push('<h3>Video</h3>');
+  if(!list || list.length===0){
+    html.push('<p>No videos found. Place files in /assets/video and pass a list.</p>');
+  } else {
+    list.forEach(v=>{
+      html.push(`<div class="video-item" style="margin-bottom:12px;">
+        <div style="font-weight:600;">${v.label}</div>
+        <video controls style="width:100%;max-height:55vh;"><source src="${v.src}"></video>
+      </div>`);
+    });
+  }
+  openPanel('Video', html.join(''));
 }
 
-// Load PDF
-export function loadPDF() {
-  openPanel("PDF Document", `
-    <iframe src="./assets/articles/article2.pdf" style="width:100%;height:70vh;"></iframe>
-  `);
+export async function loadArticleText(path, title='Article') {
+  try {
+    const res = await fetch(path);
+    if(!res.ok) throw new Error('Not found');
+    const text = await res.text();
+    openPanel(title, `<article style="white-space:pre-wrap;line-height:1.45;">${escapeHtml(text)}</article>`);
+  } catch(e){
+    openPanel(title, `<p>Unable to load article: ${e.message}</p>`);
+  }
 }
 
-// Load external webpage article
-export function loadExternalArticle() {
-  openPanel("External Article", `
-    <iframe src="https://example.com/article" style="width:100%;height:70vh;"></iframe>
-  `);
+export function loadPDF(path, title='Document (PDF)'){
+  openPanel(title, `<iframe src="${path}" style="width:100%;height:70vh;border:0;"></iframe>`);
 }
 
-// Load quiz from JSON
-export async function loadQuiz() {
-  const quiz = await fetch("./assets/quiz/quiz1.json").then(r => r.json());
-  openPanel("Quiz", buildQuizHTML(quiz));
+export function loadExternalURL(url, title='External'){
+  // note: some sites block embedding; use caution
+  openPanel(title, `<iframe src="${url}" style="width:100%;height:70vh;border:0;"></iframe>`);
 }
 
-function buildQuizHTML(q) {
+export async function loadQuiz(jsonPath){
+  try {
+    const res = await fetch(jsonPath);
+    if(!res.ok) throw new Error('Quiz not found');
+    const quiz = await res.json();
+    openPanel(quiz.title || 'Quiz', buildQuizHTML(quiz));
+  } catch(e){
+    openPanel('Quiz', `<p>Unable to load quiz: ${e.message}</p>`);
+  }
+}
+
+function buildQuizHTML(q){
   return `
-    <h3>${q.title}</h3>
-    ${q.questions.map((qs, i)=>`
-      <div class="question">
-        <p>${qs.q}</p>
-        ${qs.options.map(opt => `
-          <label><input type="radio" name="q${i}">${opt}</label><br>
-        `).join("")}
-      </div>
-    `).join("")}
+    <div class="quiz-root">
+      <h3>${q.title || ''}</h3>
+      ${q.questions.map((qs, i)=>`
+        <div class="question" style="margin-bottom:14px;">
+          <div style="font-weight:600">${i+1}. ${qs.q}</div>
+          <div>${qs.options.map((opt,j)=>`
+            <label style="display:block;margin-top:6px;"><input type="radio" name="q${i}" data-correct="${qs.answer===j}"> ${opt}</label>
+          `).join('')}</div>
+        </div>
+      `).join('')}
+      <button id="submitQuiz">Submit</button>
+      <div id="quizResult" style="margin-top:12px;"></div>
+    </div>
   `;
 }
 
+// small helper to escape text
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Handle quiz submit delegation
+document.addEventListener('click', (e)=>{
+  if(e.target && e.target.id==='submitQuiz'){
+    const root = e.target.closest('.quiz-root');
+    const inputs = root.querySelectorAll('input[type="radio"]');
+    const questions = new Set(Array.from(inputs).map(i=>i.name));
+    let score=0, total=questions.size;
+    questions.forEach(q=>{
+      const checked = root.querySelector('input[name="'+q+'"]:checked');
+      if(checked && checked.dataset.correct === 'true') score++;
+    });
+    const resultDiv = root.querySelector('#quizResult');
+    resultDiv.innerHTML = `<div><strong>Score: ${score} / ${total}</strong></div>`;
+  }
+});
+
+// export close for external use
+export function closePanelExternal(){ closePanelFn(); }
