@@ -34,6 +34,7 @@
       <model-viewer id="modelView"
         src="./assets/tibau.glb" 
         ar ar-modes="webxr scene-viewer quick-look"
+        ar-scale="auto"
         camera-controls tone-mapping="neutral"
         poster="./assets/images/poster.webp"
         shadow-intensity="1"
@@ -57,7 +58,8 @@
           <div class="update-bar"></div>
         </div>
       
-        <button slot="ar-button" id="ar-button">View in your space</button>
+        <button slot="ar-button" class="ar-btn">View in your space</button><!--
+        <button slot="ar-button" id="ar-button">View in your space</button>-->
         <div id="ar-prompt"><img src="./assets/images/ar_hand_prompt.png" alt="AR Prompt"></div>
       </model-viewer>
     </main>
