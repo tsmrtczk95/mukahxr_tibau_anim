@@ -5,69 +5,32 @@
     <meta charset="utf-8">
     <meta name="description" content="&lt;model-viewer&gt; template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" href="/styles.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/styles/main.css"> <!--NEW CODES-->
-    <link rel="stylesheet" href="/styles/components/ui-buttons.css"> 
-    <link rel="stylesheet" href="/styles/components/modal.css">
-    <link rel="stylesheet" href="/styles/components/media-card.css">
-    <link rel="stylesheet" href="/styles/components/quiz.css">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
   </head>
   <body>
-    <div class="app-container">
-      <div class="viewer-panel">
-        <model-viewer src="tibau2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral"
-          poster="poster.webp" shadow-intensity="1" camera-target="0m 4m -6m" camera-orbit="-46.76deg 74.24deg 68.55m"
-          field-of-view="30deg" autoplay style="width: 100%; height: 100%">
-          <button class="Hotspot" slot="hotspot-1" data-surface="14 0 7102 14506 14711 0.637 0.075 0.288" data-visibility-attribute="visible">
-            <div class="HotspotAnnotation">Iron Wood (Kayu Berlian)</div></button>
-          <button class="Hotspot" slot="hotspot-2" data-surface="17 0 71 79 70 0.723 0.223 0.054" data-visibility-attribute="visible">
-            <div class="HotspotAnnotation">Iron Wood Steps</div></button>
-          <button class="Hotspot" slot="hotspot-3" data-surface="19 0 2973 2871 2869 0.815 0.028 0.156" data-visibility-attribute="visible">
-            <div class="HotspotAnnotation">Rattan Rope</div></button>
-          
-          <div class="progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-          </div>
-          
-          <button slot="ar-button" id="ar-button">
-            View in your space</button>
-          <div id="ar-prompt"><img src="ar_hand_prompt.png"></div>
-        </model-viewer>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="tibau2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" camera-target="0m 4m -6m" camera-orbit="-46.76deg 74.24deg 68.55m" field-of-view="30deg" autoplay
+      style="width: 100%; height: 100%">
+      <button class="Hotspot" slot="hotspot-1" data-surface="14 0 7102 14506 14711 0.637 0.075 0.288" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Iron Wood
+              (Kayu Berlian)</div>
+      </button><button class="Hotspot" slot="hotspot-2" data-surface="17 0 71 79 70 0.723 0.223 0.054" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Iron Wood Steps</div>
+      </button><button class="Hotspot" slot="hotspot-3" data-surface="19 0 2973 2871 2869 0.815 0.028 0.156" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Rattan Rope</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
       </div>
-      <!-- UI Sidebar / Overlay -->
-      <aside class="ui-sidebar" id="uiSidebar">
-        <!-- Top Nav -->
-        <nav class="top-nav">
-          <button class="btn-icon" id="toggleSidebar">☰</button>
-          <h1>Explore</h1>
-          <a href="/" class="btn-home">🏠 Home</a>
-        </nav>
-        <!-- Main Menu -->
-        <div class="menu">
-          <button class="btn-nav" data-content="audio">🎧 Audio Guide</button>
-          <button class="btn-nav" data-content="video">🎥 Video Tour</button>
-          <button class="btn-nav" data-content="articles">📚 Articles</button>
-          <button class="btn-nav" data-content="quiz">❓ Quiz</button>
-        </div>
-        <!-- Dynamic Content Area -->
-        <div class="content-area" id="contentArea">
-          <p>Welcome! Select a topic to explore.</p>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Reusable Modal (for articles, media, quiz results) -->
-    <div class="modal-overlay hidden" id="modal">
-      <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <div class="modal-body" id="modalBody"></div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
       </div>
-    </div>
-
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script><!-- Loads <model-viewer> for browsers: -->
-    <script type="module" src="/scripts/ui-components.js"></script>
-    <script type="module" src="/scripts/content-loader.js"></script>
-    <script type="module" src="/scripts/main.js"></script>
+    </model-viewer>  
     <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   </body>
 </html>
