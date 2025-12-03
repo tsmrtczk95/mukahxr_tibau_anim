@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>&lt;model-viewer&gt; template</title>
+    <title>Mukah Xplorer - Tibau 3D</title>
     <meta charset="utf-8">
     <meta name="description" content="&lt;model-viewer&gt; template">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!--
-    <link type="text/css" href="./styles.css" rel="stylesheet"/>-->
-    <link rel="stylesheet" href="./styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./components/viewer-ui.css">
   </head>
   <body>
@@ -20,7 +19,7 @@
         <button data-open="articles">Articles</button>
         <button data-open="quiz">Quiz</button>
       </nav>
-      <button id="mobile-menu-btn" class="mobile-menu-btn">☰</button>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open Menu">☰</button>
     </header>
 <!-- Slide-up Mobile Drawer -->
     <div id="mobile-drawer" class="mobile-drawer">
@@ -30,44 +29,45 @@
       <button data-open="articles">Articles</button>
       <button data-open="quiz">Quiz</button>
     </div>
-    
-    <!-- <model-viewer> HTML element -->
-    <model-viewer src="tibau2.glb" ar 
-      ar-modes="webxr scene-viewer quick-look"
-      camera-controls tone-mapping="neutral"
-      poster="poster.webp"
-      shadow-intensity="1"
-      camera-target="0m 4m -6m"
-      camera-orbit="-46.76deg 74.24deg 68.55m"
-      field-of-view="30deg" autoplay
-      style="width: 100%; height: 100%">
+<!-- MODEL VIEWER. -->
+    <main id="viewerHost" class="viewer-host">
+      <model-viewer src="./assets/tibau.glb" 
+        ar ar-modes="webxr scene-viewer quick-look"
+        camera-controls tone-mapping="neutral"
+        poster="poster.webp"
+        shadow-intensity="1"
+        camera-target="0m 4m -6m"
+        camera-orbit="-46.76deg 74.24deg 68.55m"
+        field-of-view="30deg" 
+        autoplay
+        style="width: 100%; height: 100vh">
+<!-- HOTSPOTS. -->
+        <button class="Hotspot" slot="hotspot-1" data-surface="14 0 7102 14506 14711 0.637 0.075 0.288" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Iron Wood (Kayu Berlian)</div>
+        </button>
+        <button class="Hotspot" slot="hotspot-2" data-surface="17 0 71 79 70 0.723 0.223 0.054" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Iron Wood Steps</div>
+        </button>
+        <button class="Hotspot" slot="hotspot-3" data-surface="19 0 2973 2871 2869 0.815 0.028 0.156" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Rattan Rope</div>
+        </button>
       
-      <button class="Hotspot" slot="hotspot-1" data-surface="14 0 7102 14506 14711 0.637 0.075 0.288" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Iron Wood (Kayu Berlian)</div></button>
-      <button class="Hotspot" slot="hotspot-2" data-surface="17 0 71 79 70 0.723 0.223 0.054" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Iron Wood Steps</div></button>
-      <button class="Hotspot" slot="hotspot-3" data-surface="19 0 2973 2871 2869 0.815 0.028 0.156" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Rattan Rope</div></button>
-      
-      <div class="progress-bar hide" slot="progress-bar">
+        <div class="progress-bar hide" slot="progress-bar">
           <div class="update-bar"></div>
-      </div>
+        </div>
       
-      <button slot="ar-button" id="ar-button">
-          View in your space
-      </button>
-      <div id="ar-prompt">
-          <img src="ar_hand_prompt.png">
-      </div>
-    </model-viewer>
+        <button slot="ar-button" id="ar-button">View in your space</button>
+        <div id="ar-prompt"><img src="ar_hand_prompt.png"></div>
+      </model-viewer>
+    </main>
 
-<!-- CONTENT PANEL -->
-    <div id="contentPanel" class="content-panel">
-      <div id="contentHeader">
+<!-- SLIDE UP CONTENT PANEL -->
+    <div id="contentPanel" class="content-panel" aria-hidden="true">
+      <div id="contentHeader" class="content-header">
         <span id="panelTitle">Content</span>
-        <button id="closePanel">✕</button>
+        <button id="closePanel" aria-label="Close panel">✕</button>
       </div>
-      <div id="contentBody"></div>
+      <div id="contentBody" class="content-body"></div>
     </div>
     
     <script src="./script.js"></script>
