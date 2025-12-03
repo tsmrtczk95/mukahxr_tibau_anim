@@ -119,3 +119,22 @@ model-viewer::part(ar-button) {
   bottom: 16px !important;
   right: 16px !important;
 }
+
+@media (max-width: 768px) {
+  .ui-sidebar {
+    position: fixed; /* ← not absolute */
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .ui-sidebar.active {
+    transform: translateX(0);
+  }
+  .viewer-panel {
+    flex: 1;
+    z-index: 1; /* below sidebar */
+  }
+}
