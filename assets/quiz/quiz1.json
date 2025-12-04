@@ -1,0 +1,35 @@
+{
+  "title": "Quiz",
+  "questions": [
+    {
+      "q": "What is this Melanau traditional swing called?",
+      "options": [
+        "Giant Swing",
+        "Umai",
+        "Tibau",
+        "Sago Worms"
+      ],
+      "answer": 2
+    },
+    {
+      "q": "What's is this traditional swing made of?",
+      "options": [
+        "Iron Wood (Kayu Belian)",
+        "Birch Wood",
+        "Plywood",
+        "Walnut"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "The rope of the swing is made of...",
+      "options": [
+        "Hemp",
+        "Nylon",
+        "Copper Cable",
+        "Rattan"
+      ],
+      "answer": 3
+    },
+  ]
+}
