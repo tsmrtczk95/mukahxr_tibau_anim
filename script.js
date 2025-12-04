@@ -24,8 +24,8 @@ document.querySelectorAll('[data-open]').forEach(btn=>{
     }
     else if(type==='home') {
       // navigate to homepage or close panel
-      closePanelExternal();
-      // window.location.href = '/';
+      // closePanelExternal();
+      window.location.href = 'https://sites.google.com/poliku.edu.my/mukahxplore/3d-experiences';
     }
   });
 });
@@ -38,7 +38,7 @@ mobileBtn.addEventListener('click', ()=> {
   drawer.style.display = open ? 'none' : 'flex';
   drawer.setAttribute('aria-hidden', String(open));
 });
-
+/*
 // hotspot example: click on hotspot open content (delegated)
 document.addEventListener('click', (e)=>{
   const el = e.target.closest('.Hotspot');
@@ -49,7 +49,7 @@ document.addEventListener('click', (e)=>{
     loadArticleText('./assets/articles/article1.txt', 'Hotspot: '+id);
   }
 });
-
+*/
 // Accessibility: close panel with Escape
 document.addEventListener('keydown',(e)=>{
   if(e.key==='Escape'){
