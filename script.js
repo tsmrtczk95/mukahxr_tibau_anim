@@ -17,7 +17,7 @@ document.querySelectorAll('[data-open]').forEach(btn=>{
     }
     else if(type==='articles') {
       // toggle example: load text file; you can create a list UI instead
-      await loadArticleText('./assets/articles/article1.txt','Article: Intro');
+      await loadArticleText('./assets/articles/article01.txt', 'Article: Tibou – Traditional Game of the Sarawak Melanau Community');
     }
     else if(type==='quiz') {
       await loadQuiz('./assets/quiz/quiz1.json');
